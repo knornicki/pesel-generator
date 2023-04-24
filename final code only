@@ -1,0 +1,68 @@
+import random
+from time import sleep
+
+print('Witaj w generatorze numeru Pesel')
+sleep(1)
+print()
+print('Datę urodzenia wpisz poniżej :')
+sleep(1)
+print()
+
+dzien_urodzenia = input('Podaj dzień urodzenia (jeśli jest to trzeci dzień miesiąca napisz - 03, czwarty - 04 itp.) :')
+miesiac_urodzenia = input('Podaj miesiąc urodzenia (styczeń -> 01, luty -> 02, itp. :)')
+rok_urodzenia = input('Podaj rok urodzenia :')
+plec = input('Podaj płeć K/M :')
+
+RR = rok_urodzenia[2:]
+
+if rok_urodzenia < '2000':
+    MM = miesiac_urodzenia
+
+if rok_urodzenia >= '2000':
+    MM = int(miesiac_urodzenia) + int(20)
+    
+DD = dzien_urodzenia
+
+losowe_liczby = random.sample(range(10), 3)
+LLL = ''.join(map(str, losowe_liczby))
+
+cyfry_kobiety = (0, 2, 4, 6, 8)
+cyfry_mezczyzni = (1, 3, 5, 7, 9)
+
+if plec == 'K':
+    P = random.choice(cyfry_kobiety)
+elif plec == 'M':
+    P = random.choice(cyfry_mezczyzni)
+
+gotowy_pesel_bez_k = (str(RR) + str(MM) + str(DD) + str(LLL) + str(P))
+
+k1 = str(int(gotowy_pesel_bez_k[0])*1)
+k2 = str(int(gotowy_pesel_bez_k[1])*3)
+k3 = str(int(gotowy_pesel_bez_k[2])*7)
+k4 = str(int(gotowy_pesel_bez_k[3])*9)
+k5 = str(int(gotowy_pesel_bez_k[4])*1)
+k6 = str(int(gotowy_pesel_bez_k[5])*3)
+k7 = str(int(gotowy_pesel_bez_k[6])*7)
+k8 = str(int(gotowy_pesel_bez_k[7])*9)
+k9 = str(int(gotowy_pesel_bez_k[8])*1)
+k10 = str(int(gotowy_pesel_bez_k[9])*3)
+
+k1_pier_od_pr = int(k1[-1])
+k2_pier_od_pr = int(k2[-1])
+k3_pier_od_pr = int(k3[-1])
+k4_pier_od_pr = int(k4[-1])
+k5_pier_od_pr = int(k5[-1]) 
+k6_pier_od_pr = int(k6[-1])
+k7_pier_od_pr = int(k7[-1])
+k8_pier_od_pr = int(k8[-1])
+k9_pier_od_pr = int(k9[-1])
+k10_pier_od_pr = int(k10[-1])
+
+suma_jednosci_k = k1_pier_od_pr + k2_pier_od_pr + k3_pier_od_pr + k4_pier_od_pr + k5_pier_od_pr + k6_pier_od_pr + k7_pier_od_pr + k8_pier_od_pr + k9_pier_od_pr + k10_pier_od_pr
+
+jednosc_sumy_jednosci_k = str(suma_jednosci_k)[-1]
+
+K = 10 - int(jednosc_sumy_jednosci_k)
+
+gotowy_pesel = (str(RR) + str(MM) + str(DD) + str(LLL) + str(P) + str(K))
+print('Jeden z możliwych numerów Pesel to :', gotowy_pesel)
